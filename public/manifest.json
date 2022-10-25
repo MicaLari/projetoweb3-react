@@ -1,0 +1,8 @@
+{
+  "short_name": "Frontend React",
+  "name": "Frontend React PJ3 2022",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
