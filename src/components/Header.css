@@ -1,0 +1,57 @@
+.Header{
+    background-color: #c50000;
+    padding: 15px;
+}
+
+.Header .container{
+    display: flex;
+    margin: 0 auto;
+    width: 1000px;
+    align-items: center;
+}
+
+.Header .logotype{
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.Header .logotype h1{
+    font-size: 1rem;
+    margin:0 70px 0 10px;
+    color:#000000;
+}
+
+.Header .iconLogo{
+    color: black;
+    width: 30px;
+    height: 30px;
+}
+
+.Header .container nav ul{
+    display: flex;
+}
+
+.Header .container nav ul li{
+    list-style-type: none;
+    margin: 0 0 0 20px;
+}
+.Header .container nav ul li a{
+    color: #000000;
+    text-decoration: none;
+    margin: 0 0 0 35px;
+}
+
+.Header .container nav ul li .icon-type{
+    color: #000000;
+    text-decoration: none;
+    margin:0 -37px -2px 35px;
+}
+
+.Header .container nav ul li a:hover{
+    color: #000000
+}
+
+.Header .container nav ul li a.active{
+    color: #000000
+}
