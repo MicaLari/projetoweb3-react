@@ -55,3 +55,10 @@
 .Header .container nav ul li a.active{
     color: #000000
 }
+
+.Header .container .search .form-control      {
+    color: #000000;
+    margin: 0 0 0 83px;
+    border-radius: 19px;
+    padding: 4px;
+}
