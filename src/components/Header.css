@@ -18,7 +18,7 @@
 
 .Header .logotype h1{
     font-size: 1rem;
-    margin:0 70px 0 10px;
+    margin:0 0 0 10px;
     color:#000000;
 }
 
@@ -48,6 +48,33 @@
     margin:0 -37px -2px 35px;
 }
 
+.Header .container .Icon .Button {
+    background: none;
+    border: none;
+    margin: 0 0 0 25px;
+}
+
+.Header .container .Icon .icon-filtter{
+    width: 20px;
+    height: 20px;
+    margin: 0 0 0 25px;
+}
+
+.Header .container .test{
+    position: relative;
+    margin: 0 0 0 60px;
+}
+
+.Header .container .test .search{
+    position: relative;
+}
+
+.Header .container .test .search .icon-search{
+    position: absolute;
+    top: 7px;
+    left: 155px;
+}
+
 .Header .container nav ul li a:hover{
     color: #000000
 }
@@ -56,9 +83,9 @@
     color: #000000
 }
 
-.Header .container .search .form-control      {
+.Header .container .search .form-control{
     color: #000000;
-    margin: 0 0 0 83px;
     border-radius: 19px;
-    padding: 4px;
+    padding: 6px;
 }
+
