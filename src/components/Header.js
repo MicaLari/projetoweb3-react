@@ -1,8 +1,8 @@
 import './Header.css'
 import {GiFilmSpool as Film} from 'react-icons/gi'
 import { NavLink, Link } from 'react-router-dom'
-import { BsStar as Estrela } from "react-icons/bs";
-// import Button from 'react-bootstrap/Button';
+import { BsStar as Estrela, BsSearch as Busca, BsSliders as Filtro } from "react-icons/bs";
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const Header = () => {
@@ -22,14 +22,28 @@ const Header = () => {
               <li><Estrela className='icon-type'/>   <NavLink to='/lancamentos' end>Lançamentos</NavLink> </li>
             </ul>
           </nav>
-          <Form className="search">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-          </Form>
+          <div className="test">
+            <Form className="search">
+              <Form.Control
+                type="search"
+                placeholder="Search in Films"
+                className="me-2"
+                aria-label="Search"
+              />
+              <Busca className='icon-search' />
+            </Form>
+          </div>
+      
+          <div className='Icon'>
+            <Button variant="outline-light" className='Button'> <Filtro className='icon-filtter' /> </Button>{' '}
+          </div>
+
+          <nav>
+            <ul>
+              <li><NavLink to='/Login' end>Login</NavLink></li>
+              <li><NavLink to='/Cadastro' end>Cadastro</NavLink></li>
+            </ul>
+          </nav>
         </div>
     </div>
     
