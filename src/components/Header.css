@@ -34,7 +34,7 @@
 
 .Header .container nav ul li{
     list-style-type: none;
-    margin: 0 0 0 20px;
+    margin: 0 0 0 15px;
 }
 .Header .container nav ul li a{
     color: #000000;
@@ -51,13 +51,14 @@
 .Header .container .Icon .Button {
     background: none;
     border: none;
-    margin: 0 0 0 25px;
+    margin: 0 0 0 20px;
 }
 
-.Header .container .Icon .icon-filtter{
+.Header .container .Icon .icon-filter{
     width: 20px;
     height: 20px;
-    margin: 0 0 0 25px;
+    margin: 0 0 0 -1px;
+
 }
 
 .Header .container .test{
@@ -71,8 +72,8 @@
 
 .Header .container .test .search .icon-search{
     position: absolute;
-    top: 7px;
-    left: 155px;
+    top: 8px;
+    left: 161px;
 }
 
 .Header .container nav ul li a:hover{
@@ -86,6 +87,7 @@
 .Header .container .search .form-control{
     color: #000000;
     border-radius: 19px;
-    padding: 6px;
+    padding: 7px;
+    width: 207px;
 }
 

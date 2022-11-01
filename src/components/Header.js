@@ -35,7 +35,8 @@ const Header = () => {
           </div>
       
           <div className='Icon'>
-            <Button variant="outline-light" className='Button'> <Filtro className='icon-filtter' /> </Button>{' '}
+            <Button variant="outline-light" className='Button'> <Filtro className='icon-filter' /> </Button>{' '}
+       
           </div>
 
           <nav>
