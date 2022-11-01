@@ -1,1 +1,1 @@
-export const API_PATH = 'http://localhost/api-php-ifsp-2022-2/'
+export const API_PATH = 'http://localhost/projetoweb3-api-php/'
