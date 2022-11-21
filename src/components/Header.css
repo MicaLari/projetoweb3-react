@@ -30,22 +30,25 @@
 
 .Header .container nav ul{
     display: flex;
+    margin: 0;
 }
 
 .Header .container nav ul li{
     list-style-type: none;
-    margin: 0 0 0 15px;
+    margin: 0 0 0 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .Header .container nav ul li a{
     color: #000000;
     text-decoration: none;
-    margin: 0 0 0 35px;
+    margin: 0 0 0 8px;
 }
 
 .Header .container nav ul li .icon-type{
     color: #000000;
     text-decoration: none;
-    margin:0 -37px -2px 35px;
 }
 
 .Header .container .Icon .Button {
