@@ -6,6 +6,7 @@ import Series from './pages/Series'
 import Lancamentos from './pages/Lancamentos'
 import Login from './pages/Login'
 import Cadastro from './pages/Cadastro'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (
