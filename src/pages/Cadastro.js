@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { API_PATH } from "../config"
 import ButtonLoading from "../components/ButtonLoading"
 import Alert from "../components/Alert"
+import Header from "../components/Header"
 
 
 const SignUp = () => {
@@ -52,6 +53,7 @@ const SignUp = () => {
 
   return (
     <>
+      < Header/>
       <h1>Cadastro</h1>
       <Alert type="error" opened={error.hasError}>{error.message}</Alert>
       <Alert type="success" opened={success}>Usuário Cadastrado com sucesso!</Alert>

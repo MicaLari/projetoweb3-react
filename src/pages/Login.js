@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { API_PATH } from "../config"
 import useAuth from "../hooks/useAuth"
+import Header from "../components/Header"
 
 
 
@@ -44,6 +45,8 @@ const Login = () => {
 
   return (
     <>
+      <Header />
+      
       <h1>Login</h1>
       <form onSubmit={(event) => handleSubmit(event)}>
         <p>Email: <input type="text" name="email" /></p>
