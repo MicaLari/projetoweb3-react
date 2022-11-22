@@ -2,13 +2,15 @@ import Header from "../components/Header"
 import "./Home.css"
 import MainContainer from '../components/MainContainer'
 import Carousel from 'react-bootstrap/Carousel';
+import "../components/Footer"
+import Footer from "../components/Footer";
 
 
 const Home = () => {
 
   return (
     <>
-      <Header />
+      < Header />
 
 
       <MainContainer>
@@ -47,7 +49,13 @@ const Home = () => {
           of letters, as opposed to using 'Content here, content here', making it look like readable English.
         </p>
 
+        <div className="pdor">
+          <h1>Produtora <h1/>
+        </div>
+
       </MainContainer>
+    
+      <Footer/>
 
 
     </>

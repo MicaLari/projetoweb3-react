@@ -3,6 +3,9 @@ import { Link } from "react-router-dom"
 import { API_PATH } from "../config"
 import ButtonLoading from "../components/ButtonLoading"
 import Alert from "../components/Alert"
+import Header from "../components/Header"
+import Footer from "../components/Footer";
+import "./Cadastro.css"
 
 
 const SignUp = () => {
@@ -52,17 +55,22 @@ const SignUp = () => {
 
   return (
     <>
-      <h1>Cadastro</h1>
-      <Alert type="error" opened={error.hasError}>{error.message}</Alert>
-      <Alert type="success" opened={success}>Usuário Cadastrado com sucesso!</Alert>
-      {success && <Link to='/'>Ver Lista</Link>}
-      <form onSubmit={(event) => handleSubmit(event)}>
-        <p>Name: <input type="text" name="name" /></p>
-        <p>Email: <input type="text" name="email" /></p>
-        <p>Pass: <input type="password" name="pass" /></p>
-        <p>Avatar: <input type="text" name="avatar" /></p>
-        <ButtonLoading type="submit" isLoading={isLoading}>Send</ButtonLoading>
-      </form>
+      <Header />
+      <div className="cadastro">
+        <h1>Cadastro</h1> <br />
+        <Alert type="error" opened={error.hasError}>{error.message}</Alert>
+        <Alert type="success" opened={success}>Usuário Cadastrado com sucesso!</Alert>
+        {success && <Link to='/'>Ver Lista</Link>}
+        <form onSubmit={(event) => handleSubmit(event)}>
+          <p>Name: <br /> <input type="text" name="name" /></p>
+          <p>Email: <br /> <input type="text" name="email" /></p>
+          <p>Pass: <br /> <input type="password" name="pass" /></p>
+          <p>Avatar: <br /> <input type="text" name="avatar" /></p>
+          <ButtonLoading type="submit" isLoading={isLoading}>Send</ButtonLoading>
+        </form>
+      </div> <br />
+      
+      < Footer/>
     </>
   )
 }
