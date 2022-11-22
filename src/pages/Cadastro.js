@@ -4,6 +4,7 @@ import { API_PATH } from "../config"
 import ButtonLoading from "../components/ButtonLoading"
 import Alert from "../components/Alert"
 
+
 const SignUp = () => {
 
   const [isLoading, setIsLoading] = useState(false)
