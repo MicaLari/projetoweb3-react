@@ -1,0 +1,41 @@
+.card-user{
+    width: 300px;
+    background: #EEE;
+    display: flex;
+    padding: 10px;
+    border-radius:10px;
+    margin: 15px;
+}
+
+.userName {
+    margin: 0;
+    font-size: 0.9rem;
+    color:#000;
+}
+
+.text {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.avatar {
+    background: #CCC;;
+    height: 223px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px 0 0;
+}
+ 
+/* .box {
+    width: 235px;
+} */
+
+.buttonLink {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 10px;     
+}
+
