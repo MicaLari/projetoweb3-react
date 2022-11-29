@@ -1,10 +1,10 @@
 .card-user{
-    width: 300px;
+    width: 172px;
     background: #EEE;
     display: flex;
     padding: 10px;
     border-radius:10px;
-    margin: 15px;
+    margin: 0px;
 }
 
 .userName {
