@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom'
 import {TbTrash as IconTrash, TbEdit as IconEdit} from 'react-icons/tb'
 import { API_PATH  } from "../config"
 import useAuth from '../hooks/useAuth'
+import "./CardUser.css"
 
 const CardUsers = ({avatarUrl, name, children, id, users, setUsers, setShowModal, setUserToEdit}) => {
 
-//   const {card, avatar, box, userName, text, buttonLink} = style
-  const [userLogged] = useAuth()
+const [userLogged] = useAuth()
   const {isLogged, idUser, token, role} = userLogged
 
     const deleteUser = async (id) => {
@@ -41,26 +41,26 @@ const CardUsers = ({avatarUrl, name, children, id, users, setUsers, setShowModal
     }
 
   return (
-    <div className='card'>
+    <div className="card-user">
         <Link to={`/user/${id}`}>
-            <img src={avatarUrl} style={avatar} alt={name}/>
+            <img className='avatar' src={avatarUrl} alt={name}/>
         </Link>
-        <div className='box'>
+        <div className="box">
             <Link to={`/user/${id}`}>
-                <h1 style={userName}>{name}</h1>
-                <p style={text}>{children}</p>
+                <h1 className="userName">{name}</h1>
+                <p className="text">{children}</p>
             </Link>
             {
                isLogged && role.includes('admin') ?
                <>
-                <IconTrash style={buttonLink} onClick={() => deleteUser(id)} />
+                <IconTrash className="buttonLink" onClick={() => deleteUser(id)} />
                </>
                : ''
             }
             {
                isLogged && id === idUser ?
                <>
-                <IconEdit style={buttonLink} onClick={() => handleEdit()} />
+                <IconEdit className="buttonLink" onClick={() => handleEdit()} />
                </>
                : ''
             }
@@ -69,44 +69,5 @@ const CardUsers = ({avatarUrl, name, children, id, users, setUsers, setShowModal
   )
 }
 
-const style = {
-    avatar: {
-        background: '#CCC',
-        borderRadius: '50%',
-        height: '50px',
-        width: '50px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: '0 10px 0 0'
-    },
-    card: {
-        width: '300px',
-        background: '#EEE',
-        display: 'flex',
-        padding: '10px',
-        borderRadius: '10px',
-        margin: '15px'
-    },
-    userName: {
-        margin: 0,
-        fontSize: '0.9rem',
-        color: "#000"
-    },
-    text: {
-        margin: '0 0 10px 0',
-        color: "#333"
-    },
-    box: {
-        width: '235px'
-    },
-    buttonLink: {
-        cursor: 'pointer',
-        padding: '5px',
-        borderRadius: '5px',
-        marginRight: '10px'       
-    }
-
-}
 
 export default CardUsers
