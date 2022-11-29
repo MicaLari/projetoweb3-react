@@ -4,9 +4,8 @@ import { API_PATH } from "../config"
 import ButtonLoading from "../components/ButtonLoading"
 import Alert from "../components/Alert"
 import Header from "../components/Header"
-import Footer from "../components/Footer";
-import "./Cadastro.css"
-
+import Footer from "../components/Footer"
+import './Cadastro.css'
 
 const SignUp = () => {
 
@@ -16,7 +15,7 @@ const SignUp = () => {
   const [success, setSuccess] = useState(false)
 
   const createUser = async (user) => {
-    const response = await fetch(`${API_PATH}user/sign-up`, {
+    const response = await fetch(`${API_PATH}user/user`, {
       method: 'POST',
       body: JSON.stringify(user)
     })
@@ -56,6 +55,7 @@ const SignUp = () => {
   return (
     <>
       <Header />
+
       <div className="cadastro">
         <h1>Cadastro</h1> <br />
         <Alert type="error" opened={error.hasError}>{error.message}</Alert>
@@ -68,9 +68,9 @@ const SignUp = () => {
           <p>Avatar: <br /> <input type="text" name="avatar" /></p>
           <ButtonLoading type="submit" isLoading={isLoading}>Send</ButtonLoading>
         </form>
-      </div> <br />
-      
-      < Footer/>
+      </div>
+
+      <Footer/>
     </>
   )
 }
