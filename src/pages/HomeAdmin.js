@@ -11,7 +11,7 @@ import useAuth from '../hooks/useAuth'
 import {useEffect, useState} from 'react'
 import {API_PATH} from  "../config"
 
-const Home = () => {
+const HomeAdmin = () => {
 
   const [users, setUsers] = useState([])
   const [userToEdit, setUserToEdit] = useState({
@@ -116,7 +116,8 @@ const Home = () => {
             ? <p>Nenhum usuário</p>
             : users.map((user) =>  
               (
-                <CardUser setUsers={setUsers} users={users} key={user.id} avatarUrl={user.avatar} >
+                <CardUser setUsers={setUsers} users={users} key={user.id} avatarUrl={user.avatar} name={user.name} id={user.id} setShowModal={setShowModal} setUserToEdit={setUserToEdit}>
+                  {user.email}
                 </CardUser>
               )
             )
@@ -132,6 +133,8 @@ const Home = () => {
 
           <form onSubmit={(event) => handleSubmit(event)}>
               <input type="hidden" name="id" value={userToEdit.id}/>
+              <p>Name: <input type="text" name="name" value={userToEdit.name} onChange={(event)=>handleChange(event)}/></p>
+              <p>Email: <input type="text" name="email" value={userToEdit.email} onChange={(event)=>handleChange(event)}/></p>
               <p>Avatar: <input type="text" name="avatar" value={userToEdit.avatar} onChange={(event)=>handleChange(event)}/></p>
               <ButtonLoading type="submit" isLoading={isLoading}>Update</ButtonLoading>
           </form>
@@ -145,4 +148,4 @@ const Home = () => {
 
 
 
-export default Home
+export default HomeAdmin
