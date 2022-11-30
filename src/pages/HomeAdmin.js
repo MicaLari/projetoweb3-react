@@ -1,5 +1,5 @@
 import ButtonLoading from '../components/ButtonLoading'
-import CardUser from '../components/CardUser'
+import CardUser from '../components/CardAdmin'
 import Carousel from 'react-bootstrap/Carousel'
 import Header from "../components/Header"
 import "./Home.css"
