@@ -4,10 +4,10 @@ import { API_PATH  } from "../config"
 import useAuth from '../hooks/useAuth'
 import "./CardAdmin.css"
 
-const CardUsers = ({avatarUrl, name, children, id, users, setUsers, setShowModal, setUserToEdit}) => {
+const CardFilms = ({imgUrl, name, genero, id, film, setFilm, setShowModal, setUserToEdit}) => {
 
-const [userLogged] = useAuth()
-  const {isLogged, idUser, token, role} = userLogged
+const [filmLogged] = useAuth()
+  const {isLogged, idUser, token, role} = filmLogged
 
     const deleteUser = async (id) => {
         //const formData = new FormData()
@@ -23,8 +23,8 @@ const [userLogged] = useAuth()
         })
         const result = await response.json()
         if(result?.success){
-            const usersFiltered = users.filter((user) => {return user.id !== id})
-            setUsers(usersFiltered)
+            const filmFiltered = film.filter((user) => {return user.id !== id})
+            setUsers(filmFiltered)
         } else {
             console.error(result?.error)
         }
@@ -34,35 +34,39 @@ const [userLogged] = useAuth()
         setShowModal(true)
         setUserToEdit({
             id,
-            name,
-            email: children,
-            avatar: avatarUrl,
+            nome,
+            img: imgUrl,
+            genero,
+            min,
+
           })
     }
 
   return (
     <div className="card-Admin">
         <Link to={`/user/${id}`}>
-            <img className='avatarAdmin' src={avatarUrl} alt={name}/>
+            <img className='imgAdmin' src={imgUrl} alt={name}/>
         </Link>
         <div className="box-admin">
             <Link to={`/user/${id}`}>
-                <h1 className="userNameAdmin">{name}</h1>
+                <h1 className="imgNameAdmin">{name}</h1>
+                <p className="textAdmin">{children}</p>
+                <p className="textAdmin">{children}</p>
                 <p className="textAdmin">{children}</p>
             </Link>
             {
-               isLogged && role.includes('admin') ?
+            //    isLogged && role.includes('admin') ?
                <>
                 <IconTrash className="buttonLink" onClick={() => deleteUser(id)} />
                </>
-               : ''
+            //    : ''
             }
             {
-               isLogged && id === idUser ?
+            //    isLogged && id === idUser ?
                <>
                 <IconEdit className="buttonLink" onClick={() => handleEdit()} />
                </>
-               : ''
+            //    : ''
             }
         </div>
     </div>
@@ -70,4 +74,4 @@ const [userLogged] = useAuth()
 }
 
 
-export default CardUsers
+export default CardFilms

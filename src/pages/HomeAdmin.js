@@ -1,6 +1,5 @@
 import ButtonLoading from '../components/ButtonLoading'
 import CardUser from '../components/CardAdmin'
-import Carousel from 'react-bootstrap/Carousel'
 import Header from "../components/Header"
 import "./Home.css"
 import MainContainer from '../components/MainContainer'
@@ -13,18 +12,19 @@ import {API_PATH} from  "../config"
 
 const HomeAdmin = () => {
 
-  const [users, setUsers] = useState([])
+  const [film, setFilm] = useState([])
   const [userToEdit, setUserToEdit] = useState({
     id: "",
     name: "",
-    email: "",
-    avatar: "",
+    img: "",
+    genero: "",
+    min: "",
   })
   const [showModal, setShowModal] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const [userLogged] = useAuth()
-  const {idUser, token} = userLogged
+  const [filmLogged] = useAuth()
+  const {idUser, token} = filmLogged
 
   const requestUsers = async () => {
     const response = await fetch(`${API_PATH}user/list`)
@@ -73,41 +73,7 @@ const HomeAdmin = () => {
 
 
       <MainContainer>
-        <Carousel>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="assets/img/filme1.jpeg"
-              alt="Minios"
-            />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="assets/img/filme2.jpeg"
-              alt="Thor: Amor e trovão"
-            />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="assets/img/filme3.jpg"
-              alt="sla"
-            />
-          </Carousel.Item>
-
-        </Carousel>
-        <br />
- 
-        <h1> Sobre o Site </h1>
-        <p>It is a long established fact that a reader will be distracted by the readable 
-          content of a page when looking at its layout.
-          The point of using Lorem Ipsum is that it has a more-or-less normal distribution 
-          of letters, as opposed to using 'Content here, content here', making it look like readable English.
-        </p> <br />
-
+      
         <h1>Produtora:</h1>
 
         <div className="test">
@@ -116,9 +82,9 @@ const HomeAdmin = () => {
             ? <p>Nenhum usuário</p>
             : users.map((user) =>  
               (
-                <CardUser setUsers={setUsers} users={users} key={user.id} avatarUrl={user.avatar} name={user.name} id={user.id} setShowModal={setShowModal} setUserToEdit={setUserToEdit}>
-                  {user.email}
-                </CardUser>
+                <CardUser setFilm={setFilm} film={film} key={user.id} imgUrl={user.img} 
+                name={user.name} id={user.id} setShowModal={setShowModal} setUserToEdit={setUserToEdit}/>
+              
               )
             )
           }
