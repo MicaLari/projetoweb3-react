@@ -1,24 +1,24 @@
 import './Header.css'
 import {GiFilmSpool as Film} from 'react-icons/gi'
 import { BsStar as Estrela} from "react-icons/bs";
-import {NavLink,Link, useNavigate } from 'react-router-dom'
+import {NavLink,Link, filmNavigate } from 'react-router-dom'
 import ButtonLoading from './ButtonLoading'
-import useAuth from '../hooks/useAuth'
+import filmAuth from '../hooks/filmAuth'
 import logout from '../helpers/logout'
 
 const HeaderAdmin = () => {
 
-  const [userLogged, setUserLogged] = useAuth()
-  const navigate = useNavigate()
+  const [filmLogged, setFilmLogged] = filmAuth()
+  const navigate = filmNavigate()
 
   const handleLogout = async () => {
-    const result = await logout(userLogged.idUser, userLogged.token)
+    const result = await logout(filmLogged.idfilm, filmLogged.token)
     console.log(result)
     if(result?.success) {
       localStorage.removeItem('user-auth')
-      setUserLogged({
+      setFilmLogged({
         isLogged: false,
-        idUser: '',
+        idFilm: '',
         token: '',
         role: '',
     })

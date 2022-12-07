@@ -7,7 +7,7 @@ import "./CardAdmin.css"
 const CardFilms = ({imgUrl, name, genero, id, film, setFilm, setShowModal, setUserToEdit}) => {
 
 const [filmLogged] = useAuth()
-  const {isLogged, idUser, token, role} = filmLogged
+  const {isLogged, idFilm, token, role} = filmLogged
 
     const deleteUser = async (id) => {
         //const formData = new FormData()
@@ -23,8 +23,8 @@ const [filmLogged] = useAuth()
         })
         const result = await response.json()
         if(result?.success){
-            const filmFiltered = film.filter((user) => {return user.id !== id})
-            setUsers(filmFiltered)
+            const filmFiltered = film.filter((film) => {return film.id !== id})
+            setFilm(filmFiltered)
         } else {
             console.error(result?.error)
         }
@@ -32,7 +32,7 @@ const [filmLogged] = useAuth()
 
     const handleEdit = () =>{
         setShowModal(true)
-        setUserToEdit({
+        setFilmToEdit({
             id,
             nome,
             img: imgUrl,

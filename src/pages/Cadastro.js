@@ -43,12 +43,12 @@ const SignUp = () => {
       message: "Erro no servidor! Por favor, tente novamente!"
     })
     event.preventDefault()
-    const { name, email, pass, avatar } = event.target
+    const { name, img, genero, min } = event.target
     createUser({
       name: name.value,
-      email: email.value,
-      pass: pass.value,
-      avatar: avatar.value
+      img: img.value,
+      genero: genero.value,
+      min: min.value
     })
   }
 
@@ -63,9 +63,9 @@ const SignUp = () => {
         {success && <Link to='/'>Ver Lista</Link>}
         <form onSubmit={(event) => handleSubmit(event)}>
           <p>Name: <br /> <input type="text" name="name" /></p>
-          <p>Email: <br /> <input type="text" name="email" /></p>
-          <p>Pass: <br /> <input type="password" name="pass" /></p>
-          <p>Avatar: <br /> <input type="text" name="avatar" /></p>
+          <p>Imagem <br /> <input type="text" name="img" /></p>
+          <p>Gênero <br /> <input type="password" name="genero" /></p>
+          <p>Min: <br /> <input type="text" name="min" /></p>
           <ButtonLoading type="submit" isLoading={isLoading}>Send</ButtonLoading>
         </form>
       </div>

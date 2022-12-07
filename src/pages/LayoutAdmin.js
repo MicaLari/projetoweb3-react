@@ -1,14 +1,14 @@
 import HeaderAdmin from "../components/HeaderAdmin"
 import MainContainer from '../components/MainContainer'
 import Footer from '../components/Footer'
-import { Outlet, useNavigate } from "react-router-dom"
-import { useEffect } from "react"
-import useAuth from "../hooks/useAuth"
+import { Outlet, filmNavigate } from "react-router-dom"
+import { filmEffect } from "react"
+import filmAuth from "../hooks/filmAuth"
 
 const LayoutAdmin = () => {
 
-  const [userLogged] = useAuth()
-  const navigate = useNavigate()
+  const [filmLogged] = filmAuth()
+  const navigate = filmNavigate()
 
   //useEffect(() => {
   //  if(!userLogged.isLogged || !userLogged.role.includes('admin')){

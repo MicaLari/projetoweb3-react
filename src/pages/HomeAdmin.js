@@ -6,35 +6,35 @@ import MainContainer from '../components/MainContainer'
 import Modal from '../components/Modal'
 import Footer from "../components/Footer"
 import "../components/Footer"
-import useAuth from '../hooks/useAuth'
-import {useEffect, useState} from 'react'
+import filmAuth from '../hooks/filmAuth'
+import {filmEffect, filmState} from 'react'
 import {API_PATH} from  "../config"
 
 const HomeAdmin = () => {
 
-  const [film, setFilm] = useState([])
-  const [userToEdit, setUserToEdit] = useState({
+  const [film, setFilm] = filmState([])
+  const [filmToEdit, setFilmToEdit] = filmState({
     id: "",
     name: "",
     img: "",
     genero: "",
     min: "",
   })
-  const [showModal, setShowModal] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [showModal, setShowModal] = filmState(false)
+  const [isLoading, setIsLoading] = filmState(false)
 
-  const [filmLogged] = useAuth()
-  const {idUser, token} = filmLogged
+  const [filmLogged] = filmAuth()
+  const {idFilm, token} = filmLogged
 
-  const requestUsers = async () => {
+  const requestFilm = async () => {
     const response = await fetch(`${API_PATH}user/list`)
     const result = await response.json()
     console.log(result.success.message)
-    setUsers(result.data)
+    setFilm(result.data)
   }
 
   const handleChange = (event) =>{
-    setUserToEdit({...userToEdit, [event.target.name]: event.target.value })
+    setFilmToEdit({...filmToEdit, [event.target.name]: event.target.value })
   }
 
   const handleSubmit = async (event) => {
@@ -42,28 +42,28 @@ const HomeAdmin = () => {
     event.preventDefault()
     const response = await fetch(`${API_PATH}user/update`, {
       method: 'PUT',
-      body: JSON.stringify(userToEdit),
+      body: JSON.stringify(filmToEdit),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `${idUser} ${token}`
+        'Authorization': `${idFilm} ${token}`
       }
     })
     const result = await response.json()
-    if(result?.success && result?.user){
-      const userUpdated = result.user
-      const usersUpdated = users.map((user) => {
-        return user.id === userUpdated.id ? userUpdated : user  
+    if(result?.success && result?.film){
+      const filmUpdated = result.film
+      const filmUpdated = film.map((film) => {
+        return film.id === filmUpdated.id ? filmUpdated : film  
       })
-      setUsers(usersUpdated)
+      setFilm(filmUpdated)
       setShowModal(false)
     }
     console.log(JSON.stringify(result))
     setIsLoading(false)
 }
 
-  useEffect(() => {
-    requestUsers()
+  filmEffect(() => {
+    requestFilm()
   },[])
 
 
@@ -78,12 +78,12 @@ const HomeAdmin = () => {
 
         <div className="test">
           {
-            users.length === 0
+            film.length === 0
             ? <p>Nenhum usuário</p>
-            : users.map((user) =>  
+            : film.map((film) =>  
               (
-                <CardUser setFilm={setFilm} film={film} key={user.id} imgUrl={user.img} 
-                name={user.name} id={user.id} setShowModal={setShowModal} setUserToEdit={setUserToEdit}/>
+                <CardUser setFilm={setFilm} film={film} key={film.id} imgUrl={film.img}  genero={film.genero} min={film.min}
+                name={film.name} id={film.id} setShowModal={setShowModal} setFilmToEdit={setFilmToEdit}/>
               
               )
             )
@@ -98,10 +98,11 @@ const HomeAdmin = () => {
           <h1>Edit User</h1>
 
           <form onSubmit={(event) => handleSubmit(event)}>
-              <input type="hidden" name="id" value={userToEdit.id}/>
-              <p>Name: <input type="text" name="name" value={userToEdit.name} onChange={(event)=>handleChange(event)}/></p>
-              <p>Email: <input type="text" name="email" value={userToEdit.email} onChange={(event)=>handleChange(event)}/></p>
-              <p>Avatar: <input type="text" name="avatar" value={userToEdit.avatar} onChange={(event)=>handleChange(event)}/></p>
+              <input type="hidden" name="id" value={filmToEdit.id}/>
+              <p>Name: <input type="text" name="name" value={filmToEdit.name} onChange={(event)=>handleChange(event)}/></p>
+              <p>Img: <input type="text" name="img" value={filmToEdit.img} onChange={(event)=>handleChange(event)}/></p>
+              <p>Gênero: <input type="text" name="genero" value={filmToEdit.genero} onChange={(event)=>handleChange(event)}/></p>
+              <p>Min: <input type="text" name="min" value={filmToEdit.min} onChange={(event)=>handleChange(event)}/></p>
               <ButtonLoading type="submit" isLoading={isLoading}>Update</ButtonLoading>
           </form>
 

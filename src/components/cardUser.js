@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import {TbTrash as IconTrash, TbEdit as IconEdit} from 'react-icons/tb'
 import { API_PATH  } from "../config"
-import useAuth from '../hooks/useAuth'
+import filmAuth from '../hooks/filmAuth'
 import "./CardUser.css"
 
-const CardFilms = ({imgUrl, name, genero, id, film, setFilm, setShowModal, setUserToEdit}) => {
+const CardFilms = ({imgUrl, name, genero, id, film, setFilm, setShowModal, setFilmToEdit}) => {
 
 const [filmLogged] = useAuth()
-  const {isLogged, idUser, token, role} = filmLogged
+  const {isLogged, idFilm, token, role} = filmLogged
 
     const deleteUser = async (id) => {
         //const formData = new FormData()
@@ -18,13 +18,13 @@ const [filmLogged] = useAuth()
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': `${idUser} ${token}`
+                'Authorization': `${idFilm} ${token}`
             }
         })
         const result = await response.json()
         if(result?.success){
-            const filmFiltered = film.filter((user) => {return user.id !== id})
-            setUsers(usersFiltered)
+            const filmFiltered = film.filter((film) => {return film.id !== id})
+            setFilm(filmFiltered)
         } else {
             console.error(result?.error)
         }
@@ -32,7 +32,7 @@ const [filmLogged] = useAuth()
 
     const handleEdit = () =>{
         setShowModal(true)
-        setUserToEdit({
+        setFilmToEdit({
             id,
             nome,
             img: imgUrl,
