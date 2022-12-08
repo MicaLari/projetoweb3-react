@@ -64,7 +64,7 @@ const SignUp = () => {
         <form onSubmit={(event) => handleSubmit(event)}>
           <p>Name: <br /> <input type="text" name="name" /></p>
           <p>Imagem <br /> <input type="text" name="img" /></p>
-          <p>Gênero <br /> <input type="password" name="genero" /></p>
+          <p>Gênero <br /> <input type="text" name="genero" /></p>
           <p>Min: <br /> <input type="text" name="min" /></p>
           <ButtonLoading type="submit" isLoading={isLoading}>Send</ButtonLoading>
         </form>

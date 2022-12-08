@@ -4,9 +4,9 @@ import { API_PATH  } from "../config"
 import filmAuth from '../hooks/filmAuth'
 import "./CardUser.css"
 
-const CardFilms = ({imgUrl, name, genero, id, film, setFilm, setShowModal, setFilmToEdit}) => {
+const cardUser= ({imgUrl, nome, min ,children, genero, id, film, setFilm, setShowModal, setFilmToEdit}) => {
 
-const [filmLogged] = useAuth()
+const [filmLogged] = filmAuth()
   const {isLogged, idFilm, token, role} = filmLogged
 
     const deleteUser = async (id) => {
@@ -44,11 +44,11 @@ const [filmLogged] = useAuth()
   return (
     <div className="card-Admin">
         <Link to={`/user/${id}`}>
-            <img className='imgAdmin' src={imgUrl} alt={name}/>
+            <img className='imgAdmin' src={imgUrl} alt={nome}/>
         </Link>
         <div className="box-admin">
             <Link to={`/user/${id}`}>
-                <h1 className="imgNameAdmin">{name}</h1>
+                <h1 className="imgNameAdmin">{nome}</h1>
                 <p className="textAdmin">{children}</p>
                 <p className="textAdmin">{children}</p>
                 <p className="textAdmin">{children}</p>
@@ -73,4 +73,4 @@ const [filmLogged] = useAuth()
 }
 
 
-export default CardUsers
+export default cardUser

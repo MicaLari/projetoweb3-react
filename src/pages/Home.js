@@ -1,5 +1,5 @@
 import ButtonLoading from '../components/ButtonLoading'
-import CardUser from '../components/CardUser'
+import cardUser from '../components/cardUser'
 import Carousel from 'react-bootstrap/Carousel'
 import Header from "../components/Header"
 import "./Home.css"
@@ -13,10 +13,10 @@ import {API_PATH} from  "../config"
 
 const Home = () => {
 
-  const [film, setFilm] = filmState([])
+  const [films, setFilms] = filmState([])
   const [filmToEdit, setFilmToEdit] = filmState({
     id: "",
-    name: "",
+    nome: "",
     img: "",
     genero: "",
     min: "",
@@ -31,7 +31,7 @@ const Home = () => {
     const response = await fetch(`${API_PATH}user/list`)
     const result = await response.json()
     console.log(result.success.message)
-    setFilm(result.data)
+    setFilms(result.data)
   }
 
   const handleChange = (event) =>{
@@ -53,10 +53,10 @@ const Home = () => {
     const result = await response.json()
     if(result?.success && result?.film){
       const filmUpdated = result.film
-      const filmUpdated = film.map((film) => {
-        return film.id === filmUpdated.id ? filmUpdated : film  
+      const filmsUpdated = films.map((films) => {
+        return films.id === filmUpdated.id ? filmsUpdated : films  
       })
-      setFilm(filmUpdated)
+      setFilms(filmsUpdated)
       setShowModal(false)
     }
     console.log(JSON.stringify(result))
@@ -113,12 +113,12 @@ const Home = () => {
 
         <div className="test">
           {
-            film.length === 0
+            films.length === 0
             ? <p>Nenhum usuário</p>
-            : users.map((user) =>  
+            : films.map((film) =>  
               (
-                <CardUser setFilm={setFilm} film={film} key={user.id} ImgUrl={film.img} >
-                </CardUser>
+                <cardUser setFilms={setFilms} films={films} key={films.id} ImgUrl={film.img} >
+                </cardUser>
               )
             )
           }

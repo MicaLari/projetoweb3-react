@@ -1,5 +1,5 @@
 import ButtonLoading from '../components/ButtonLoading'
-import CardUser from '../components/CardAdmin'
+import CardAdmin from '../components/CardAdmin'
 import Header from "../components/Header"
 import "./Home.css"
 import MainContainer from '../components/MainContainer'
@@ -12,7 +12,7 @@ import {API_PATH} from  "../config"
 
 const HomeAdmin = () => {
 
-  const [film, setFilm] = filmState([])
+  const [films, setFilms] = filmState([])
   const [filmToEdit, setFilmToEdit] = filmState({
     id: "",
     name: "",
@@ -30,7 +30,7 @@ const HomeAdmin = () => {
     const response = await fetch(`${API_PATH}user/list`)
     const result = await response.json()
     console.log(result.success.message)
-    setFilm(result.data)
+    setFilms(result.data)
   }
 
   const handleChange = (event) =>{
@@ -51,11 +51,11 @@ const HomeAdmin = () => {
     })
     const result = await response.json()
     if(result?.success && result?.film){
-      const filmUpdated = result.film
-      const filmUpdated = film.map((film) => {
-        return film.id === filmUpdated.id ? filmUpdated : film  
+      const filmUpdated = result.films
+      const filmsUspdated = films.map((films) => {
+        return films.id === filmUpdated.id ? filmUpdated : films  
       })
-      setFilm(filmUpdated)
+      setFilms(filmUpdated)
       setShowModal(false)
     }
     console.log(JSON.stringify(result))
@@ -78,15 +78,15 @@ const HomeAdmin = () => {
 
         <div className="test">
           {
-            film.length === 0
+            films.length === 0
             ? <p>Nenhum usuário</p>
-            : film.map((film) =>  
+            : films.map((films) =>  
               (
-                <CardUser setFilm={setFilm} film={film} key={film.id} imgUrl={film.img}  genero={film.genero} min={film.min}
-                name={film.name} id={film.id} setShowModal={setShowModal} setFilmToEdit={setFilmToEdit}/>
+                <CardAdmin setFilms={setFilms} films={films} key={films.id} imgUrl={films.img}  genero={films.genero} min={films.min}
+                name={films.name} id={films.id} setShowModal={setShowModal} setFilmToEdit={setFilmToEdit}/>
               
               )
-            )
+            )    
           }
         </div>
       

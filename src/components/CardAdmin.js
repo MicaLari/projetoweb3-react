@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import {TbTrash as IconTrash, TbEdit as IconEdit} from 'react-icons/tb'
 import { API_PATH  } from "../config"
-import useAuth from '../hooks/useAuth'
+import filmAuth from '../hooks/filmAuth'
 import "./CardAdmin.css"
 
-const CardFilms = ({imgUrl, name, genero, id, film, setFilm, setShowModal, setUserToEdit}) => {
+const CardAdmin = ({imgUrl, nome, genero, id, min, children ,films, setFilms, setShowModal, setFilmToEdit}) => {
 
-const [filmLogged] = useAuth()
+const [filmLogged] = filmAuth()
   const {isLogged, idFilm, token, role} = filmLogged
 
     const deleteUser = async (id) => {
@@ -18,13 +18,13 @@ const [filmLogged] = useAuth()
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': `${idUser} ${token}`
+                'Authorization': `${idFilm} ${token}`
             }
         })
         const result = await response.json()
         if(result?.success){
-            const filmFiltered = film.filter((film) => {return film.id !== id})
-            setFilm(filmFiltered)
+            const filmFiltered = films.filter((film) => {return films.id !== id})
+            setFilms(filmFiltered)
         } else {
             console.error(result?.error)
         }
@@ -45,11 +45,11 @@ const [filmLogged] = useAuth()
   return (
     <div className="card-Admin">
         <Link to={`/user/${id}`}>
-            <img className='imgAdmin' src={imgUrl} alt={name}/>
+            <img className='imgAdmin' src={imgUrl} alt={nome}/>
         </Link>
         <div className="box-admin">
             <Link to={`/user/${id}`}>
-                <h1 className="imgNameAdmin">{name}</h1>
+                <h1 className="imgNameAdmin">{nome}</h1>
                 <p className="textAdmin">{children}</p>
                 <p className="textAdmin">{children}</p>
                 <p className="textAdmin">{children}</p>
@@ -74,4 +74,4 @@ const [filmLogged] = useAuth()
 }
 
 
-export default CardFilms
+export default CardAdmin
