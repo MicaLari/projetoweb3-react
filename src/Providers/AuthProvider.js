@@ -1,9 +1,9 @@
-import { createContext, filmState } from "react"
+import { createContext, useState } from "react"
 
 export const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
-    const [filmLogged, setFilmLogged] = filmState({
+    const [filmLogged, setFilmLogged] = useState({
         isLogged: false,
         idFilm: '',
         token: '',

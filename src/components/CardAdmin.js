@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import {TbTrash as IconTrash, TbEdit as IconEdit} from 'react-icons/tb'
 import { API_PATH  } from "../config"
-import filmAuth from '../hooks/filmAuth'
+import useAuth from '../hooks/useAuth'
 import "./CardAdmin.css"
 
 const CardAdmin = ({imgUrl, nome, genero, id, min, children ,films, setFilms, setShowModal, setFilmToEdit}) => {
 
-const [filmLogged] = filmAuth()
-  const {isLogged, idFilm, token, role} = filmLogged
+const [filmLogged] = useAuth()
+  const { idFilm, token } = filmLogged
 
     const deleteUser = async (id) => {
         //const formData = new FormData()
@@ -23,7 +23,7 @@ const [filmLogged] = filmAuth()
         })
         const result = await response.json()
         if(result?.success){
-            const filmFiltered = films.filter((film) => {return films.id !== id})
+            const filmFiltered = films.filter((films) => {return films.id !== id})
             setFilms(filmFiltered)
         } else {
             console.error(result?.error)
@@ -50,9 +50,8 @@ const [filmLogged] = filmAuth()
         <div className="box-admin">
             <Link to={`/user/${id}`}>
                 <h1 className="imgNameAdmin">{nome}</h1>
-                <p className="textAdmin">{children}</p>
-                <p className="textAdmin">{children}</p>
-                <p className="textAdmin">{children}</p>
+                <p className="textAdmin">{genero}</p>
+                <p className="textAdmin">{min}</p>
             </Link>
             {
             //    isLogged && role.includes('admin') ?

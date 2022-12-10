@@ -2,12 +2,12 @@ import HeaderAdmin from "../components/HeaderAdmin"
 import MainContainer from '../components/MainContainer'
 import Footer from '../components/Footer'
 import { Outlet, filmNavigate } from "react-router-dom"
-import { filmEffect } from "react"
-import filmAuth from "../hooks/filmAuth"
+import { useEffect } from "react"
+import useAuth from "../hooks/useAuth"
 
 const LayoutAdmin = () => {
 
-  const [filmLogged] = filmAuth()
+  const [filmLogged] = useAuth()
   const navigate = filmNavigate()
 
   //useEffect(() => {

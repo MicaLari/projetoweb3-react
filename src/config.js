@@ -1,1 +1,1 @@
-export const API_PATH = 'http://localhost/freemovie/projetoweb3-api-php/'
+export const API_PATH = 'http://localhost/freemovies/projetoweb3-api-php/'

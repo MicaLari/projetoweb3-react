@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
-import {TbTrash as IconTrash, TbEdit as IconEdit} from 'react-icons/tb'
+
 import { API_PATH  } from "../config"
-import filmAuth from '../hooks/filmAuth'
+import useAuth from '../hooks/useAuth'
 import "./CardUser.css"
 
-const cardUser= ({imgUrl, nome, min ,children, genero, id, film, setFilm, setShowModal, setFilmToEdit}) => {
+const CardUser = ({imgUrl, nome, min ,children, genero, id, films, setFilms, setShowModal, setFilmToEdit}) => {
 
-const [filmLogged] = filmAuth()
-  const {isLogged, idFilm, token, role} = filmLogged
+    const [filmLogged] = useAuth()
+    const { idFilm, token } = filmLogged
 
     const deleteUser = async (id) => {
         //const formData = new FormData()
@@ -23,8 +23,8 @@ const [filmLogged] = filmAuth()
         })
         const result = await response.json()
         if(result?.success){
-            const filmFiltered = film.filter((film) => {return film.id !== id})
-            setFilm(filmFiltered)
+            const filmFiltered = films.filter((films) => {return films.id !== id})
+            setFilms(filmFiltered)
         } else {
             console.error(result?.error)
         }
@@ -42,30 +42,28 @@ const [filmLogged] = filmAuth()
     }
 
   return (
-    <div className="card-Admin">
-        <Link to={`/user/${id}`}>
-            <img className='imgAdmin' src={imgUrl} alt={nome}/>
+    <div className="card-user{
+        ">
+        <Link to={`/film/${id}`}>
+            <img className='img' src={imgUrl} alt={nome}/>
         </Link>
         <div className="box-admin">
-            <Link to={`/user/${id}`}>
-                <h1 className="imgNameAdmin">{nome}</h1>
-                <p className="textAdmin">{children}</p>
-                <p className="textAdmin">{children}</p>
-                <p className="textAdmin">{children}</p>
+            <Link to={`/film/${id}`}>
+                {/* <h1 className="imgNameAdmin">{nome}</h1> */}
             </Link>
             {
             //    isLogged && role.includes('admin') ?
-               <>
-                <IconTrash className="buttonLink" onClick={() => deleteUser(id)} />
-               </>
+            //    <>
+            //     <IconTrash className="buttonLink" onClick={() => deleteUser(id)} />
+            //    </>
             //    : ''
             }
             {
             //    isLogged && id === idUser ?
-               <>
-                <IconEdit className="buttonLink" onClick={() => handleEdit()} />
-               </>
-            //    : ''
+            //    <>
+            //     <IconEdit className="buttonLink" onClick={() => handleEdit()} />
+            //    </>
+            // //    : ''
             }
         </div>
     </div>
@@ -73,4 +71,4 @@ const [filmLogged] = filmAuth()
 }
 
 
-export default cardUser
+export default CardUser

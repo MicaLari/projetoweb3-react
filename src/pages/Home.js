@@ -1,5 +1,4 @@
 import ButtonLoading from '../components/ButtonLoading'
-import cardUser from '../components/cardUser'
 import Carousel from 'react-bootstrap/Carousel'
 import Header from "../components/Header"
 import "./Home.css"
@@ -7,35 +6,36 @@ import MainContainer from '../components/MainContainer'
 import Modal from '../components/Modal'
 import Footer from "../components/Footer"
 import "../components/Footer"
-import filmAuth from '../hooks/filmAuth'
-import {filmEffect, filmState} from 'react'
+import useAuth from '../hooks/useAuth'
+import {useEffect, useState} from 'react'
 import {API_PATH} from  "../config"
+import CardUser from '../components/CardUser'
 
 const Home = () => {
 
-  const [films, setFilms] = filmState([])
-  const [filmToEdit, setFilmToEdit] = filmState({
+  const [films, setFilms] = useState([])
+  const [filmToEdit, setFilmToEdit] = useState({
     id: "",
     nome: "",
     img: "",
     genero: "",
     min: "",
   })
-  const [showModal, setShowModal] = filmState(false)
-  const [isLoading, setIsLoading] = filmState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const [filmLogged] = filmAuth()
+  const [filmLogged] = useAuth()
   const {idFilm, token} = filmLogged
 
   const requestFilm = async () => {
-    const response = await fetch(`${API_PATH}user/list`)
+    const response = await fetch(`${API_PATH}film/list`)
     const result = await response.json()
     console.log(result.success.message)
     setFilms(result.data)
   }
 
   const handleChange = (event) =>{
-    setFilmToEdit({...filmToEdit, [event.target.name]: event.target.value })
+    setFilmToEdit({...filmToEdit, [event.target.nome]: event.target.value })
   }
 
   const handleSubmit = async (event) => {
@@ -63,7 +63,7 @@ const Home = () => {
     setIsLoading(false)
 }
 
-  filmEffect(() => {
+  useEffect(() => {
     requestFilm()
   },[])
 
@@ -117,8 +117,7 @@ const Home = () => {
             ? <p>Nenhum usuário</p>
             : films.map((film) =>  
               (
-                <cardUser setFilms={setFilms} films={films} key={films.id} ImgUrl={film.img} >
-                </cardUser>
+                <CardUser setFilms={setFilms} films={films} key={film.id} imgUrl={film.img} id={film.id} nome={film.nome}/>
               )
             )
           }
@@ -133,7 +132,7 @@ const Home = () => {
 
           <form onSubmit={(event) => handleSubmit(event)}>
               <input type="hidden" name="id" value={filmToEdit.id}/>
-              <p>Imagem: <input type="text" name="img" value={filmToEdit.avatar} onChange={(event)=>handleChange(event)}/></p>
+              <p>Imagem: <input type="text" name="img" value={filmToEdit.img} onChange={(event)=>handleChange(event)}/></p>
               <ButtonLoading type="submit" isLoading={isLoading}>Update</ButtonLoading>
           </form>
 

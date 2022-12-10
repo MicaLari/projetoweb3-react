@@ -14,10 +14,10 @@ const SignUp = () => {
   message: "Erro no servidor! Por favor, tente novamente!"})
   const [success, setSuccess] = useState(false)
 
-  const createUser = async (user) => {
-    const response = await fetch(`${API_PATH}user/user`, {
+  const createUser = async (film) => {
+    const response = await fetch(`${API_PATH}film/create` , {
       method: 'POST',
-      body: JSON.stringify(user)
+      body: JSON.stringify(film)
     })
     const result = await response.json()
     if (result?.success) {
@@ -43,9 +43,9 @@ const SignUp = () => {
       message: "Erro no servidor! Por favor, tente novamente!"
     })
     event.preventDefault()
-    const { name, img, genero, min } = event.target
+    const { nome, img, genero, min } = event.target
     createUser({
-      name: name.value,
+      nome: nome.value,
       img: img.value,
       genero: genero.value,
       min: min.value
@@ -62,10 +62,10 @@ const SignUp = () => {
         <Alert type="success" opened={success}>Usuário Cadastrado com sucesso!</Alert>
         {success && <Link to='/'>Ver Lista</Link>}
         <form onSubmit={(event) => handleSubmit(event)}>
-          <p>Name: <br /> <input type="text" name="name" /></p>
+          <p>Nome: <br /> <input type="text" name="nome" /></p>
           <p>Imagem <br /> <input type="text" name="img" /></p>
           <p>Gênero <br /> <input type="text" name="genero" /></p>
-          <p>Min: <br /> <input type="text" name="min" /></p>
+          <p>Min: <br /> <input type="numero" name="min" /></p>
           <ButtonLoading type="submit" isLoading={isLoading}>Send</ButtonLoading>
         </form>
       </div>

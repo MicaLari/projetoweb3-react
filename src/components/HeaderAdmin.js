@@ -3,12 +3,12 @@ import {GiFilmSpool as Film} from 'react-icons/gi'
 import { BsStar as Estrela} from "react-icons/bs";
 import {NavLink,Link, filmNavigate  } from 'react-router-dom'
 import ButtonLoading from './ButtonLoading'
-import filmAuth from '../hooks/filmAuth'
+import useAuth from '../hooks/useAuth'
 import logout from '../helpers/logout'
 
 const HeaderAdmin = () => {
 
-  const [filmLogged, setFilmLogged] = filmAuth()
+  const [filmLogged, setFilmLogged] = useAuth()
   const navigate = filmNavigate()
 
   const handleLogout = async () => {
