@@ -4,7 +4,7 @@ import { API_PATH  } from "../config"
 import useAuth from '../hooks/useAuth'
 import "./CardAdmin.css"
 
-const CardAdmin = ({imgUrl, nome, genero, id, min, children ,films, setFilms, setShowModal, setFilmToEdit}) => {
+const CardAdmin = ({imgUrl, nome, genero, id, min ,films, setFilms, setShowModal, setFilmToEdit}) => {
 
 const [filmLogged] = useAuth()
   const { idFilm, token } = filmLogged
@@ -12,7 +12,7 @@ const [filmLogged] = useAuth()
     const deleteUser = async (id) => {
         //const formData = new FormData()
         //formData.append('id', id)
-        const response = await fetch(`${API_PATH}user/delete`,{
+        const response = await fetch(`${API_PATH}film/delete`,{
             method: 'DELETE',
             body: JSON.stringify({id: id}),
             headers: {
@@ -49,7 +49,7 @@ const [filmLogged] = useAuth()
         </Link>
         <div className="box-admin">
             <Link to={`/user/${id}`}>
-                <h1 className="imgNameAdmin">{nome}</h1>
+                <p className="imgNameAdmin">{nome}</p>
                 <p className="textAdmin">{genero}</p>
                 <p className="textAdmin">{min}</p>
             </Link>

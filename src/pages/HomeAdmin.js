@@ -15,7 +15,7 @@ const HomeAdmin = () => {
   const [films, setFilms] = useState([])
   const [filmToEdit, setFilmToEdit] = useState({
     id: "",
-    name: "",
+    nome: "",
     img: "",
     genero: "",
     min: "",
@@ -34,13 +34,13 @@ const HomeAdmin = () => {
   }
 
   const handleChange = (event) =>{
-    setFilmToEdit({...filmToEdit, [event.target.nome]: event.target.value })
+    setFilmToEdit({...filmToEdit, [event.target.name]: event.target.value })
   }
 
   const handleSubmit = async (event) => {
     setIsLoading(true)
     event.preventDefault()
-    const response = await fetch(`${API_PATH}user/update`, {
+    const response = await fetch(`${API_PATH}film/update`, {
       method: 'PUT',
       body: JSON.stringify(filmToEdit),
       headers: {
@@ -51,9 +51,9 @@ const HomeAdmin = () => {
     })
     const result = await response.json()
     if(result?.success && result?.film){
-      const filmUpdated = result.films
-      const filmsToUpdated = films.map((films) => {
-        return films.id === filmUpdated.id ? filmUpdated : films  
+      const filmUpdated = result.film
+      const filmsToUpdated = films.map((film) => {
+        return film.id === filmUpdated.id ? filmUpdated : film
       })
       setFilms(filmsToUpdated)
       setShowModal(false)
@@ -76,14 +76,14 @@ const HomeAdmin = () => {
       
         <h1>Produtora:</h1>
 
-        <div className="test">
+        <div className="film">
           {
             films.length === 0
             ? <p>Nenhum usuário</p>
             : films.map((film) =>  
               (
-                <CardAdmin setFilms={setFilms} films={films} key={films.id} imgUrl={film.img}  genero={film.genero} min={film.min}
-                name={film.name} id={film.id} setShowModal={setShowModal} setFilmToEdit={setFilmToEdit}/>
+                <CardAdmin setFilms={setFilms} films={films} key={film.id} imgUrl={film.img}  genero={film.genero} min={film.min}
+                nome={film.nome} id={film.id} setShowModal={setShowModal} setFilmToEdit={setFilmToEdit}/>
               
               )
             )    
@@ -95,11 +95,11 @@ const HomeAdmin = () => {
       <Footer/>
 
       <Modal showModal={showModal} setShowModal={setShowModal}>
-          <h1>Edit User</h1>
+          <h1>Edit Film</h1>
 
           <form onSubmit={(event) => handleSubmit(event)}>
               <input type="hidden" name="id" value={filmToEdit.id}/>
-              <p>Name: <input type="text" name="name" value={filmToEdit.name} onChange={(event)=>handleChange(event)}/></p>
+              <p>Name: <input type="text" name="nome" value={filmToEdit.nome} onChange={(event)=>handleChange(event)}/></p>
               <p>Img: <input type="text" name="img" value={filmToEdit.img} onChange={(event)=>handleChange(event)}/></p>
               <p>Gênero: <input type="text" name="genero" value={filmToEdit.genero} onChange={(event)=>handleChange(event)}/></p>
               <p>Min: <input type="numero" name="min" value={filmToEdit.min} onChange={(event)=>handleChange(event)}/></p>

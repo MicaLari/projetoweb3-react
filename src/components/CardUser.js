@@ -3,7 +3,7 @@ import { API_PATH  } from "../config"
 import useAuth from '../hooks/useAuth'
 import "./CardUser.css"
 
-const CardUser = ({imgUrl, nome, min ,children, genero, id, films, setFilms, setShowModal, setFilmToEdit}) => {
+const CardUser = ({imgUrl, nome, min , genero, id, films, setFilms, setShowModal, setFilmToEdit}) => {
 
     const [filmLogged] = useAuth()
     const { idFilm, token } = filmLogged
@@ -11,7 +11,7 @@ const CardUser = ({imgUrl, nome, min ,children, genero, id, films, setFilms, set
     const deleteUser = async (id) => {
         //const formData = new FormData()
         //formData.append('id', id)
-        const response = await fetch(`${API_PATH}user/delete`,{
+        const response = await fetch(`${API_PATH}film/delete`,{
             method: 'DELETE',
             body: JSON.stringify({id: id}),
             headers: {
