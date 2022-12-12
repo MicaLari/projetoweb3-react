@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-
 import { API_PATH  } from "../config"
 import useAuth from '../hooks/useAuth'
 import "./CardUser.css"
