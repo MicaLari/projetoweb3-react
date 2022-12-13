@@ -49,7 +49,7 @@ const [filmLogged] = useAuth()
         </Link>
         <div className="box-admin">
             <Link to={`/user/${id}`}>
-                <p className="imgNameAdmin">{nome}</p>
+                <h3 className="imgNameAdmin">{nome}</h3>
                 <p className="textAdmin">{genero}</p>
                 <p className="textAdmin">{min}</p>
             </Link>
