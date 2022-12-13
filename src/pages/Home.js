@@ -108,9 +108,59 @@ const Home = () => {
           The point of using Lorem Ipsum is that it has a more-or-less normal distribution 
           of letters, as opposed to using 'Content here, content here', making it look like readable English.
         </p> <br />
+        <div className='produtoras'>
+          <h1>Produtora:</h1><br />
+          <div className='imgs'>
+            <img
+                className="img"
+                src="assets/img/paramount.png"
+                alt="paramount"
+            />
 
-        <h1>Produtora:</h1>
+            <img
+              className="img"
+              src="assets/img/netflix1.png"
+              alt="netflix"
+            />
 
+            <img
+              className="img"
+              src="assets/img/starz.png"
+              alt="starz"
+            />
+
+            <img
+              className="img"
+              src="assets/img/amazon.png"
+              alt="amazon"
+            />
+
+            <img
+              className="img"
+              src="assets/img/hbo.png"
+              alt="hbo"
+            />
+
+            <img
+              className="img"
+              src="assets/img/globo1.png"
+              alt="globo"
+            />
+
+            <img
+              className="img"
+              src="assets/img/app.png"
+              alt="app"
+            />
+
+
+          </div>
+         
+
+        </div><br/>
+        
+
+        <h1>Filmes: </h1><br />
         <div className="film">
           {
             films.length === 0
